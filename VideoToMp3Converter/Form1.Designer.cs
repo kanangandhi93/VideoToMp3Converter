@@ -40,7 +40,7 @@
             this.btnImport = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.txtOutput = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnExport = new System.Windows.Forms.Button();
             this.btnConvert = new System.Windows.Forms.Button();
             this.pnlTop.SuspendLayout();
             this.pnlTopFrame.SuspendLayout();
@@ -132,7 +132,7 @@
             // 
             this.pnlDashboard.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnlDashboard.Controls.Add(this.btnConvert);
-            this.pnlDashboard.Controls.Add(this.button1);
+            this.pnlDashboard.Controls.Add(this.btnExport);
             this.pnlDashboard.Controls.Add(this.btnImport);
             this.pnlDashboard.Controls.Add(this.txtOutput);
             this.pnlDashboard.Controls.Add(this.txtInput);
@@ -189,15 +189,16 @@
             this.txtOutput.TabIndex = 1;
             this.txtOutput.TabStop = false;
             // 
-            // button1
+            // btnExport
             // 
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Location = new System.Drawing.Point(457, 124);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(90, 31);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "Export";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnExport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnExport.Location = new System.Drawing.Point(457, 124);
+            this.btnExport.Name = "btnExport";
+            this.btnExport.Size = new System.Drawing.Size(90, 31);
+            this.btnExport.TabIndex = 1;
+            this.btnExport.Text = "Export";
+            this.btnExport.UseVisualStyleBackColor = true;
+            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
             // 
             // btnConvert
             // 
@@ -208,6 +209,7 @@
             this.btnConvert.TabIndex = 2;
             this.btnConvert.Text = "Convert";
             this.btnConvert.UseVisualStyleBackColor = true;
+            this.btnConvert.Click += new System.EventHandler(this.btnConvert_Click);
             // 
             // frm
             // 
@@ -246,7 +248,7 @@
         private System.Windows.Forms.Button btnImport;
         private System.Windows.Forms.TextBox txtInput;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnExport;
         private System.Windows.Forms.TextBox txtOutput;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnConvert;

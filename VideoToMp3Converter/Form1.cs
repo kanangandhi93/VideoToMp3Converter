@@ -40,15 +40,32 @@ namespace VideoToMp3Converter
         }
 
         string VideoName = string.Empty;
+        string VideoPath = string.Empty;
+        string MusicPath = string.Empty;
+        string MusicName = string.Empty;
 
         private void btnImport_Click(object sender, EventArgs e)
         {
             OpenFileDialog of = new OpenFileDialog() { Multiselect = false };
-            if (of.ShowDialog()==DialogResult.OK)
+            if (of.ShowDialog() == DialogResult.OK)
             {
-                txtInput.Text = of.FileName;
+                VideoPath = txtInput.Text = of.FileName;
                 VideoName = of.SafeFileName;
+                MusicName = VideoName.Substring(0, VideoName.Length - 4);
             }
+        }
+
+        private void btnExport_Click(object sender, EventArgs e)
+        {
+            MusicPath = Application.StartupPath + "/" + MusicName + ".mp3";
+            txtOutput.Text = MusicPath;
+        }
+
+        private void btnConvert_Click(object sender, EventArgs e)
+        {
+            var Convert = new NReco.VideoConverter.FFMpegConverter();
+            Convert.ConvertMedia(VideoPath, MusicPath, "mp3");
+
         }
     }
 }
