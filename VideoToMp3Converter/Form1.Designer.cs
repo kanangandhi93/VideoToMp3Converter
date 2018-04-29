@@ -42,10 +42,14 @@
             this.txtInput = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.bkw = new System.ComponentModel.BackgroundWorker();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.lblStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.pnlTop.SuspendLayout();
             this.pnlTopFrame.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.pnlDashboard.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlTop
@@ -132,6 +136,7 @@
             // pnlDashboard
             // 
             this.pnlDashboard.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlDashboard.Controls.Add(this.statusStrip1);
             this.pnlDashboard.Controls.Add(this.btnConvert);
             this.pnlDashboard.Controls.Add(this.btnExport);
             this.pnlDashboard.Controls.Add(this.btnImport);
@@ -142,7 +147,7 @@
             this.pnlDashboard.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlDashboard.Location = new System.Drawing.Point(0, 38);
             this.pnlDashboard.Name = "pnlDashboard";
-            this.pnlDashboard.Size = new System.Drawing.Size(569, 235);
+            this.pnlDashboard.Size = new System.Drawing.Size(569, 268);
             this.pnlDashboard.TabIndex = 0;
             // 
             // btnConvert
@@ -212,12 +217,34 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Import a Video:";
             // 
+            // bkw
+            // 
+            this.bkw.DoWork += new System.ComponentModel.DoWorkEventHandler(this.bkw_DoWork);
+            this.bkw.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.bkw_ProgressChanged);
+            this.bkw.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.bkw_RunWorkerCompleted);
+            // 
+            // statusStrip1
+            // 
+            this.statusStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.lblStatus});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 242);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(567, 24);
+            this.statusStrip1.TabIndex = 3;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // lblStatus
+            // 
+            this.lblStatus.Name = "lblStatus";
+            this.lblStatus.Size = new System.Drawing.Size(0, 19);
+            // 
             // frm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(569, 273);
+            this.ClientSize = new System.Drawing.Size(569, 306);
             this.Controls.Add(this.pnlDashboard);
             this.Controls.Add(this.pnlTop);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -233,6 +260,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.pnlDashboard.ResumeLayout(false);
             this.pnlDashboard.PerformLayout();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -253,6 +282,9 @@
         private System.Windows.Forms.TextBox txtOutput;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnConvert;
+        private System.ComponentModel.BackgroundWorker bkw;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripStatusLabel lblStatus;
     }
 }
 
