@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
@@ -12,6 +13,35 @@ namespace VideoToMp3Converter
         {
             InitializeComponent();
             lblTitle.Text = Text;
+            CheckingLicenseVersion();
+        }
+
+        private void CheckingLicenseVersion()
+        {
+
+            RegistryKey key = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\VTMCVK");
+
+            if (key == null)
+            {
+                key = Registry.CurrentUser.CreateSubKey(@"SOFTWARE\VTMCVK");
+                key.SetValue("StartDate", DateTime.Now.ToShortDateString());
+                key.Close();
+                Application.Restart();
+            }
+            else
+            {
+                DateTime StartDate = Convert.ToDateTime(key.GetValue("StartDate"));
+                DateTime CurrentDate = DateTime.Now;
+                if((CurrentDate - StartDate).TotalDays>7)
+                {
+                    MessageBox.Show("Your Trial Version is expired", "Required", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    Application.Exit();
+                }
+            }
+
+            //MessageBox.Show(key.GetValue("StartDate").ToString());
+
+
         }
 
         private void btnCLose_MouseEnter(object sender, EventArgs e)
