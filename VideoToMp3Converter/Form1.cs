@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
 using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
 
 namespace VideoToMp3Converter
@@ -75,6 +72,7 @@ namespace VideoToMp3Converter
                 if (!string.IsNullOrEmpty(txtOutput.Text))
                 {
                     lblStatus.Text = "Converting...";
+                    btnConvert.Enabled = false;
                     bkw.RunWorkerAsync();
                 }
                 else
@@ -97,6 +95,7 @@ namespace VideoToMp3Converter
         private void bkw_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             lblStatus.Text = "Completed.";
+            btnConvert.Enabled = true;
             MessageBox.Show(VideoName + " mp3 Conversion Completed.", "Conversion Completed", MessageBoxButtons.OK, MessageBoxIcon.Information);
             Process.Start(FolderPath);
         }
@@ -104,6 +103,11 @@ namespace VideoToMp3Converter
         private void bkw_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             lblStatus.Text = "Converting...";
+        }
+
+        private void btnMinimize_Click(object sender, EventArgs e)
+        {
+            WindowState = FormWindowState.Minimized;
         }
     }
 }
